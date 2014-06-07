@@ -3,7 +3,7 @@
 
 Name: google-roboto-fonts
 Version: 1.2
-Release: 2%{?dist}
+Release: 3%{?dist}
 Summary: Google Roboto fonts
 
 License: ASL 2.0
@@ -71,6 +71,9 @@ done
 %doc %{fontsrcdir}/RobotoSpecimenBook.pdf
 
 %changelog
+* Sat Jun 07 2014 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 1.2-3
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_21_Mass_Rebuild
+
 * Mon Apr 07 2014 David Tardon <dtardon@redhat.com> - 1.2-2
 - integrate package review suggestions
 
