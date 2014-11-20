@@ -3,7 +3,7 @@
 
 Name: google-roboto-fonts
 Version: 1.2
-Release: 3%{?dist}
+Release: 4%{?dist}
 Summary: Google Roboto fonts
 
 # Only the metainfo.xml files are CC0
@@ -80,6 +80,9 @@ install -m 0644 -p %{SOURCE3} %{SOURCE4} %{buildroot}%{_datadir}/appdata
 %doc %{fontsrcdir}/RobotoSpecimenBook.pdf
 
 %changelog
+* Thu Nov 20 2014 David Tardon <dtardon@redhat.com> - 1.2-4
+- add AppData files
+
 * Sat Jun 07 2014 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 1.2-3
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_21_Mass_Rebuild
 
