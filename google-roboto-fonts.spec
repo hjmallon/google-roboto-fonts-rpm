@@ -6,11 +6,14 @@ Version: 1.2
 Release: 3%{?dist}
 Summary: Google Roboto fonts
 
-License: ASL 2.0
+# Only the metainfo.xml files are CC0
+License: ASL 2.0 and CC0
 URL: https://www.google.com/fonts/specimen/Roboto
 Source0: http://developer.android.com/downloads/design/%{pkgname}-%{version}.zip
 Source1: 64-%{fontname}-condensed-fontconfig.conf
 Source2: 64-%{fontname}-fontconfig.conf
+Source3: %{fontname}-condensed.metainfo.xml
+Source4: %{fontname}.metainfo.xml
 BuildArch: noarch
 
 BuildRequires: dos2unix
@@ -62,9 +65,15 @@ for fconf in %{fontconf}.conf %{fontconf}-condensed.conf; do
   ln -s %{_fontconfig_templatedir}/$fconf %{buildroot}%{_fontconfig_confdir}/$fconf
 done
 
+# install appdata
+install -m 0755 -d %{buildroot}%{_datadir}/appdata
+install -m 0644 -p %{SOURCE3} %{SOURCE4} %{buildroot}%{_datadir}/appdata
+
 %_font_pkg -f %{fontconf}.conf Roboto-*.ttf
+%{_datadir}/appdata/%{fontname}.metainfo.xml
 
 %_font_pkg -n condensed -f %{fontconf}-condensed.conf RobotoCondensed-*.ttf
+%{_datadir}/appdata/%{fontname}-condensed.metainfo.xml
 
 %files -n %{fontname}-common
 %doc %{fontsrcdir}/Roboto/LICENSE.txt
