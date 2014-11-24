@@ -3,7 +3,7 @@
 
 Name: google-roboto-fonts
 Version: 1.2
-Release: 4%{?dist}
+Release: 5%{?dist}
 Summary: Google Roboto fonts
 
 # Only the metainfo.xml files are CC0
@@ -80,6 +80,9 @@ install -m 0644 -p %{SOURCE3} %{SOURCE4} %{buildroot}%{_datadir}/appdata
 %doc %{fontsrcdir}/RobotoSpecimenBook.pdf
 
 %changelog
+* Mon Nov 24 2014 David Tardon <dtardon@redhat.com> - 1.2-5
+- use just Roboto as the font's name in metainfo
+
 * Thu Nov 20 2014 David Tardon <dtardon@redhat.com> - 1.2-4
 - add AppData files
 
