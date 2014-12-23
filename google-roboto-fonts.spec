@@ -82,6 +82,7 @@ install -m 0644 -p %{SOURCE3} %{SOURCE4} %{buildroot}%{_datadir}/appdata
 %changelog
 * Tue Dec 23 2014 David Tardon <dtardon@redhat.com> - 1.2-8
 - revert the previous "update"
+- Resolves: rhbz#1174935 fix font metadata
 
 * Tue Dec 23 2014 David Tardon <dtardon@redhat.com> - 1.2-7
 - drop obsolete requires
