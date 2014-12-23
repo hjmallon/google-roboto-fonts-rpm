@@ -6,7 +6,7 @@ Name: google-roboto-fonts
 # http://developer.android.com/design/style/typography.html was version 1.2,
 # so I will just continue using that version.
 Version: 1.2
-Release: 6%{?dist}
+Release: 7%{?dist}
 Summary: Google Roboto fonts
 
 # Only the metainfo.xml files are CC0
@@ -36,7 +36,6 @@ approachable" and "emotional".
 
 %package -n %{fontname}-condensed-fonts
 Summary: Google Roboto condensed fonts
-Requires: %{fontname}-common = %{version}-%{release}
 
 %description -n %{fontname}-condensed-fonts
 Google Roboto condensed fonts.
@@ -79,6 +78,9 @@ install -m 0644 -p %{SOURCE5} %{buildroot}%{_docdir}/%{fontname}-condensed-fonts
 %doc %{_docdir}/%{fontname}-condensed-fonts/LICENSE.txt
 
 %changelog
+* Tue Dec 23 2014 David Tardon <dtardon@redhat.com> - 1.2-7
+- drop obsolete requires
+
 * Wed Dec 17 2014 David Tardon <dtardon@redhat.com> - 1.2-6
 - Resolves: rhbz#1174935 update to what is presumably the latest release
   of the font
