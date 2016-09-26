@@ -1,28 +1,27 @@
 %global pkgname roboto
+%global srcname %{pkgname}-unhinted
 %global fontname google-roboto
 
 Name: google-roboto-fonts
-Version: 1.2
-Release: 10%{?dist}
+Version: 2.134
+Release: 1%{?dist}
 Summary: Google Roboto fonts
 
 # Only the metainfo.xml files are CC0
 License: ASL 2.0 and CC0
-URL: https://www.google.com/fonts/specimen/Roboto
-Source0: http://developer.android.com/downloads/design/%{pkgname}-%{version}.zip
-Source1: 64-%{fontname}-condensed-fontconfig.conf
-Source2: 64-%{fontname}-fontconfig.conf
-Source3: %{fontname}-condensed.metainfo.xml
-Source4: %{fontname}.metainfo.xml
+URL: https://github.com/google/roboto
+Source0: https://github.com/google/%{pkgname}/releases/download/v%{version}/%{srcname}.zip
+Source1: https://raw.githubusercontent.com/google/%{pkgname}/v%{version}/LICENSE
+Source2: 64-%{fontname}-condensed-fontconfig.conf
+Source3: 64-%{fontname}-fontconfig.conf
+Source4: %{fontname}-condensed.metainfo.xml
+Source5: %{fontname}.metainfo.xml
 BuildArch: noarch
 
-BuildRequires: dos2unix
 BuildRequires: fontpackages-devel
 
 Requires: %{fontname}-common = %{version}-%{release}
 
-%global archivename %{pkgname}-%{version}
-%global fontsrcdir Roboto_v%{version}
 %global fontconf 64-%{fontname}
 
 %description
@@ -45,29 +44,28 @@ Requires: fontpackages-filesystem
 Common files for Google Roboto fonts.
 
 %prep
-%autosetup -c -n %{name}-%{version}
-dos2unix %{fontsrcdir}/*/LICENSE.txt
+%autosetup -n %{srcname}
+cp -p %{SOURCE1} .
 
 %build
 
 %install
 # install fonts
 install -m 0755 -d %{buildroot}%{_fontdir}
-install -m 0644 -p %{fontsrcdir}/Roboto/*.ttf %{buildroot}%{_fontdir}
-install -m 0644 -p %{fontsrcdir}/RobotoCondensed/*.ttf %{buildroot}%{_fontdir}
+install -m 0644 -p Roboto*.ttf %{buildroot}%{_fontdir}
 
 # install fontconfig files
 install -m 0755 -d %{buildroot}%{_fontconfig_templatedir} \
                    %{buildroot}%{_fontconfig_confdir}
-install -m 0644 -p %{SOURCE2} %{buildroot}%{_fontconfig_templatedir}/%{fontconf}.conf
-install -m 0644 -p %{SOURCE1} %{buildroot}%{_fontconfig_templatedir}/%{fontconf}-condensed.conf
+install -m 0644 -p %{SOURCE3} %{buildroot}%{_fontconfig_templatedir}/%{fontconf}.conf
+install -m 0644 -p %{SOURCE2} %{buildroot}%{_fontconfig_templatedir}/%{fontconf}-condensed.conf
 for fconf in %{fontconf}.conf %{fontconf}-condensed.conf; do
   ln -s %{_fontconfig_templatedir}/$fconf %{buildroot}%{_fontconfig_confdir}/$fconf
 done
 
 # install appdata
 install -m 0755 -d %{buildroot}%{_datadir}/appdata
-install -m 0644 -p %{SOURCE3} %{SOURCE4} %{buildroot}%{_datadir}/appdata
+install -m 0644 -p %{SOURCE4} %{SOURCE5} %{buildroot}%{_datadir}/appdata
 
 %_font_pkg -f %{fontconf}.conf Roboto-*.ttf
 %{_datadir}/appdata/%{fontname}.metainfo.xml
@@ -76,10 +74,12 @@ install -m 0644 -p %{SOURCE3} %{SOURCE4} %{buildroot}%{_datadir}/appdata
 %{_datadir}/appdata/%{fontname}-condensed.metainfo.xml
 
 %files -n %{fontname}-common
-%doc %{fontsrcdir}/Roboto/LICENSE.txt
-%doc %{fontsrcdir}/RobotoSpecimenBook.pdf
+%license LICENSE
 
 %changelog
+* Mon Sep 26 2016 David Tardon <dtardon@redhat.com> - 2.134-1
+- update to latest release
+
 * Wed Feb 03 2016 Fedora Release Engineering <releng@fedoraproject.org> - 1.2-10
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_24_Mass_Rebuild
 
