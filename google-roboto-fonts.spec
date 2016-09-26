@@ -1,6 +1,7 @@
 %global pkgname roboto
 %global srcname %{pkgname}-unhinted
 %global fontname google-roboto
+%global fontconf 64-%{fontname}
 
 Name: google-roboto-fonts
 Version: 2.134
@@ -12,8 +13,8 @@ License: ASL 2.0 and CC0
 URL: https://github.com/google/roboto
 Source0: https://github.com/google/%{pkgname}/releases/download/v%{version}/%{srcname}.zip
 Source1: https://raw.githubusercontent.com/google/%{pkgname}/v%{version}/LICENSE
-Source2: 64-%{fontname}-condensed-fontconfig.conf
-Source3: 64-%{fontname}-fontconfig.conf
+Source2: %{fontconf}-condensed-fontconfig.conf
+Source3: %{fontconf}-fontconfig.conf
 Source4: %{fontname}-condensed.metainfo.xml
 Source5: %{fontname}.metainfo.xml
 BuildArch: noarch
@@ -21,8 +22,6 @@ BuildArch: noarch
 BuildRequires: fontpackages-devel
 
 Obsoletes: %{fontname}-common < 2.134-1
-
-%global fontconf 64-%{fontname}
 
 %description
 Roboto is a sans-serif typeface family introduced with Android Ice Cream
