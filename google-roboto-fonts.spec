@@ -20,7 +20,7 @@ BuildArch: noarch
 
 BuildRequires: fontpackages-devel
 
-Requires: %{fontname}-common = %{version}-%{release}
+Obsoletes: %{fontname}-common < 2.134-1
 
 %global fontconf 64-%{fontname}
 
@@ -31,17 +31,10 @@ approachable" and "emotional".
 
 %package -n %{fontname}-condensed-fonts
 Summary: Google Roboto condensed fonts
-Requires: %{fontname}-common = %{version}-%{release}
+Obsoletes: %{fontname}-common < 2.134-1
 
 %description -n %{fontname}-condensed-fonts
 Google Roboto condensed fonts.
-
-%package -n %{fontname}-common
-Summary: Common files for Google Roboto fonts
-Requires: fontpackages-filesystem
-
-%description -n %{fontname}-common
-Common files for Google Roboto fonts.
 
 %prep
 %autosetup -n %{srcname}
@@ -69,11 +62,10 @@ install -m 0644 -p %{SOURCE4} %{SOURCE5} %{buildroot}%{_datadir}/appdata
 
 %_font_pkg -f %{fontconf}.conf Roboto-*.ttf
 %{_datadir}/appdata/%{fontname}.metainfo.xml
+%license LICENSE
 
 %_font_pkg -n condensed -f %{fontconf}-condensed.conf RobotoCondensed-*.ttf
 %{_datadir}/appdata/%{fontname}-condensed.metainfo.xml
-
-%files -n %{fontname}-common
 %license LICENSE
 
 %changelog
