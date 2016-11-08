@@ -4,7 +4,7 @@
 %global fontconf 64-%{fontname}
 
 Name: google-roboto-fonts
-Version: 2.134
+Version: 2.135
 Release: 1%{?dist}
 Summary: Google Roboto fonts
 
@@ -12,11 +12,10 @@ Summary: Google Roboto fonts
 License: ASL 2.0 and CC0
 URL: https://github.com/google/roboto
 Source0: https://github.com/google/%{pkgname}/releases/download/v%{version}/%{srcname}.zip
-Source1: https://raw.githubusercontent.com/google/%{pkgname}/v%{version}/LICENSE
-Source2: %{fontconf}-condensed-fontconfig.conf
-Source3: %{fontconf}-fontconfig.conf
-Source4: %{fontname}-condensed.metainfo.xml
-Source5: %{fontname}.metainfo.xml
+Source1: %{fontconf}-condensed-fontconfig.conf
+Source2: %{fontconf}-fontconfig.conf
+Source3: %{fontname}-condensed.metainfo.xml
+Source4: %{fontname}.metainfo.xml
 BuildArch: noarch
 
 BuildRequires: fontpackages-devel
@@ -37,7 +36,6 @@ Google Roboto condensed fonts.
 
 %prep
 %autosetup -n %{srcname}
-cp -p %{SOURCE1} .
 
 %build
 
@@ -49,15 +47,15 @@ install -m 0644 -p Roboto*.ttf %{buildroot}%{_fontdir}
 # install fontconfig files
 install -m 0755 -d %{buildroot}%{_fontconfig_templatedir} \
                    %{buildroot}%{_fontconfig_confdir}
-install -m 0644 -p %{SOURCE3} %{buildroot}%{_fontconfig_templatedir}/%{fontconf}.conf
-install -m 0644 -p %{SOURCE2} %{buildroot}%{_fontconfig_templatedir}/%{fontconf}-condensed.conf
+install -m 0644 -p %{SOURCE2} %{buildroot}%{_fontconfig_templatedir}/%{fontconf}.conf
+install -m 0644 -p %{SOURCE1} %{buildroot}%{_fontconfig_templatedir}/%{fontconf}-condensed.conf
 for fconf in %{fontconf}.conf %{fontconf}-condensed.conf; do
   ln -s %{_fontconfig_templatedir}/$fconf %{buildroot}%{_fontconfig_confdir}/$fconf
 done
 
 # install appdata
 install -m 0755 -d %{buildroot}%{_datadir}/appdata
-install -m 0644 -p %{SOURCE4} %{SOURCE5} %{buildroot}%{_datadir}/appdata
+install -m 0644 -p %{SOURCE3} %{SOURCE4} %{buildroot}%{_datadir}/appdata
 
 %_font_pkg -f %{fontconf}.conf Roboto-*.ttf
 %{_datadir}/appdata/%{fontname}.metainfo.xml
@@ -68,6 +66,9 @@ install -m 0644 -p %{SOURCE4} %{SOURCE5} %{buildroot}%{_datadir}/appdata
 %license LICENSE
 
 %changelog
+* Tue Nov 08 2016 David Tardon <dtardon@redhat.com> - 2.135-1
+- new upstream release
+
 * Mon Sep 26 2016 David Tardon <dtardon@redhat.com> - 2.134-1
 - update to latest release
 
