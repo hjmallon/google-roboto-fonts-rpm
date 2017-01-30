@@ -4,7 +4,7 @@
 %global fontconf 64-%{fontname}
 
 Name: google-roboto-fonts
-Version: 2.135
+Version: 2.136
 Release: 1%{?dist}
 Summary: Google Roboto fonts
 
@@ -66,6 +66,9 @@ install -m 0644 -p %{SOURCE3} %{SOURCE4} %{buildroot}%{_datadir}/appdata
 %license LICENSE
 
 %changelog
+* Mon Jan 30 2017 David Tardon <dtardon@redhat.com> - 2.136-1
+- new upstream release
+
 * Tue Nov 08 2016 David Tardon <dtardon@redhat.com> - 2.135-1
 - new upstream release
 
