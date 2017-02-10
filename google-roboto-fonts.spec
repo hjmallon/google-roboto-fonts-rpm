@@ -5,7 +5,7 @@
 
 Name: google-roboto-fonts
 Version: 2.136
-Release: 1%{?dist}
+Release: 2%{?dist}
 Summary: Google Roboto fonts
 
 # Only the metainfo.xml files are CC0
@@ -66,6 +66,9 @@ install -m 0644 -p %{SOURCE3} %{SOURCE4} %{buildroot}%{_datadir}/appdata
 %license LICENSE
 
 %changelog
+* Fri Feb 10 2017 Fedora Release Engineering <releng@fedoraproject.org> - 2.136-2
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_26_Mass_Rebuild
+
 * Mon Jan 30 2017 David Tardon <dtardon@redhat.com> - 2.136-1
 - new upstream release
 
