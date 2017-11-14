@@ -4,8 +4,8 @@
 %global fontconf 64-%{fontname}
 
 Name: google-roboto-fonts
-Version: 2.136
-Release: 3%{?dist}
+Version: 2.138
+Release: 1%{?dist}
 Summary: Google Roboto fonts
 
 # Only the metainfo.xml files are CC0
@@ -35,7 +35,7 @@ Obsoletes: %{fontname}-common < 2.134-1
 Google Roboto condensed fonts.
 
 %prep
-%autosetup -n %{srcname}
+%autosetup -c -n %{srcname}
 
 %build
 
@@ -66,6 +66,9 @@ install -m 0644 -p %{SOURCE3} %{SOURCE4} %{buildroot}%{_datadir}/appdata
 %license LICENSE
 
 %changelog
+* Tue Nov 14 2017 Harry Mallon <hjmallon@gmail.com> - 2.138-1
+- new upstream release
+
 * Wed Jul 26 2017 Fedora Release Engineering <releng@fedoraproject.org> - 2.136-3
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_27_Mass_Rebuild
 
